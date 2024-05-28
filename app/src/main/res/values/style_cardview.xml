@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
+            <item name="cardCornerRadius">16dp</item> <!-- Ajusta el radio de la esquina según lo deseado -->
+            <item name="cardElevation">4dp</item> <!-- Ajusta la elevación según lo deseado -->
+        </style>
+</resources>

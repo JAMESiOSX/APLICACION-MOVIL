@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+            <item name="boxCornerRadiusTopStart">16dp</item> <!-- Ajusta el radio de la esquina según lo deseado -->
+            <item name="boxCornerRadiusTopEnd">16dp</item> <!-- Ajusta el radio de la esquina según lo deseado -->
+            <item name="boxCornerRadiusBottomStart">16dp</item> <!-- Ajusta el radio de la esquina según lo deseado -->
+            <item name="boxCornerRadiusBottomEnd">16dp</item> <!-- Ajusta el radio de la esquina según lo deseado -->
+        </style>
+</resources>
