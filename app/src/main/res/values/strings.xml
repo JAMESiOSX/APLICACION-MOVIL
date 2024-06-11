@@ -10,5 +10,6 @@
     <string name="menu_inicio">Inicio</string>
     <string name="menu_productos">Productos</string>
     <string name="menu_asistente">Chatbot</string>
+    <string name="menu_sucursales">Sucursales</string>
     <string name="menu_contacto">Contacto</string>
 </resources>

@@ -18,13 +18,10 @@ public class LoginActivity extends AppCompatActivity {
         Button buttonLogin = findViewById(R.id.buttonLogin);
 
         // Asigna el listener de clic al botón
-        buttonLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Aquí puedes poner el código que se ejecutará cuando se haga clic en el botón
-                // Por ejemplo, iniciar sesión
-                iniciarSesion();
-            }
+        buttonLogin.setOnClickListener(v -> {
+            // Aquí puedes poner el código que se ejecutará cuando se haga clic en el botón
+            // Por ejemplo, iniciar sesión
+            iniciarSesion();
         });
     }
 
