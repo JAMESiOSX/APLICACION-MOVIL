@@ -1,16 +1,16 @@
-package android.studio.capystorecomputer.ui.gallery;
+package android.studio.capystorecomputer.ui.perfil;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class PerfilViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public PerfilViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("HOLA, AQUI VAN LOS PRODUCTOS DEL MONGO XD");
+        mText.setValue("HOLA ESTO ES PERFIL");
     }
 
     public LiveData<String> getText() {

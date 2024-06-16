@@ -1,4 +1,4 @@
-package android.studio.capystorecomputer.ui.gallery;
+package android.studio.capystorecomputer.ui.assistant;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.studio.capystorecomputer.databinding.FragmentGalleryBinding;
+import android.studio.capystorecomputer.databinding.FragmentAssistantBinding;
 
-public class GalleryFragment extends Fragment {
+public class AssistantFragment extends Fragment {
 
-    private FragmentGalleryBinding binding;
+    private FragmentAssistantBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        GalleryViewModel galleryViewModel =
-                new ViewModelProvider(this).get(GalleryViewModel.class);
+        AssistantViewModel assistantViewModel =
+                new ViewModelProvider(this).get(AssistantViewModel.class);
 
-        binding = FragmentGalleryBinding.inflate(inflater, container, false);
+        binding = FragmentAssistantBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textAssistant;
+        assistantViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

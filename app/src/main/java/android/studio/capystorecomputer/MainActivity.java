@@ -1,10 +1,8 @@
 package android.studio.capystorecomputer;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -30,21 +28,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show());
+        binding.appBarMain.fab.setOnClickListener(view ->
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show());
 
-        DrawerLayout drawer = binding.drawerLayout;
+        DrawerLayout drawerLayout = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
+        // Configure the AppBarConfiguration with the correct top-level destinations
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setOpenableLayout(drawer)
+                R.id.nav_home, R.id.nav_products, R.id.nav_assistant,
+                R.id.nav_sucursales, R.id.nav_contacto, R.id.nav_perfil)
+                .setOpenableLayout(drawerLayout)
                 .build();
 
+        // Initialize NavController
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
+        // Setup the ActionBar with NavController and AppBarConfiguration
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+
+        // Setup NavigationView with NavController for handling item clicks
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
@@ -55,21 +59,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_login) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+
+        int itemId = item.getItemId();
+        if (itemId == R.id.nav_home || itemId == R.id.nav_home ||
+                itemId == R.id.nav_assistant || itemId == R.id.nav_assistant ||
+                itemId == R.id.nav_contacto || itemId == R.id.nav_contacto ||
+                itemId == R.id.nav_perfil || itemId == R.id.nav_perfil ||
+                itemId == R.id.nav_products || itemId == R.id.nav_products ||
+                itemId == R.id.nav_sucursales || itemId == R.id.nav_sucursales) {
+            return NavigationUI.onNavDestinationSelected(item, navController);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

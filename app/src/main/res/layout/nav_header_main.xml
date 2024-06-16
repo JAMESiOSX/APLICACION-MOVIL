@@ -18,7 +18,7 @@
         android:layout_height="78dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@drawable/icon_computer" />
+        app:srcCompat="@drawable/capibara" />
 
     <TextView
         android:layout_width="match_parent"
@@ -33,3 +33,5 @@
         android:layout_height="wrap_content"
         android:text="@string/nav_header_subtitle" />
 </LinearLayout>
+
+    <!-- MANEJO DEL BANNER -->

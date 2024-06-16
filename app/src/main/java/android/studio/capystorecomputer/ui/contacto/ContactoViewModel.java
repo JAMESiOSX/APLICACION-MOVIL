@@ -1,16 +1,16 @@
-package android.studio.capystorecomputer.ui.slideshow;
+package android.studio.capystorecomputer.ui.contacto;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class ContactoViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public ContactoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("HOLA ESTO ES CONTACTO");
     }
 
     public LiveData<String> getText() {

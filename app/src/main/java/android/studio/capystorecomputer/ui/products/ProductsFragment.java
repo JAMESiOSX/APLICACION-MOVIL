@@ -1,4 +1,5 @@
-package android.studio.capystorecomputer.ui.home;
+package android.studio.capystorecomputer.ui.products;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.studio.capystorecomputer.databinding.FragmentHomeBinding;
+import android.studio.capystorecomputer.databinding.FragmentProductsBinding;
 
-public class HomeFragment extends Fragment {
+public class ProductsFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentProductsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        ProductsViewModel productsViewModel =
+                new ViewModelProvider(this).get(ProductsViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentProductsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textProducts;
+        productsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

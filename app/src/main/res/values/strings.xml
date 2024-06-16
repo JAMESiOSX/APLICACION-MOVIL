@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">BiteDepot</string>
+    <string name="app_name">DigitalDepot</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">BiteComputer</string>
-    <string name="nav_header_subtitle">bitedepot@gmail.com</string>
+    <string name="nav_header_title">DigitalDepot</string>
+    <string name="nav_header_subtitle">digitaldepot@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_login">Acceder</string>
 
@@ -12,4 +12,7 @@
     <string name="menu_asistente">Chatbot</string>
     <string name="menu_sucursales">Sucursales</string>
     <string name="menu_contacto">Contacto</string>
+    <string name="menu_perfil">Mi perfil</string>
 </resources>
+
+    <!-- MANEJO DE LOS NOMBRES DEL MENU A DE LOS TITULOS DEL BANNER -->
