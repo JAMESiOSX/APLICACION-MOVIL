@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,17 +16,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CAPYSTORECOMPUTER"
         tools:targetApi="31">
+
         <activity
-            android:name=".ui.Perfil"
+            android:name=".ui.perfil.PerfilFragment"
             android:exported="false" />
         <activity
-            android:name=".Contacto"
+            android:name=".ui.contacto.ContactoFragment"
             android:exported="false" />
         <activity
-            android:name=".ui.Maps"
+            android:name=".ui.maps.MapsFragment"
             android:exported="false" />
         <activity
-            android:name=".Chatbot"
+            android:name=".ui.assistant.AssistantFragment"
             android:exported="false" />
         <activity
             android:name=".Registro"
@@ -37,10 +42,13 @@
             android:theme="@style/Theme.CAPYSTORECOMPUTER.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCw5tr7SW8cz6h2zHuvEjgFMcVa2Ff4fF8" />
     </application>
 
 </manifest>
