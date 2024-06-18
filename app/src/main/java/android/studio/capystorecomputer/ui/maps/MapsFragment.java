@@ -2,23 +2,30 @@ package android.studio.capystorecomputer.ui.maps;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import android.studio.capystorecomputer.R;
 
 public class MapsFragment extends Fragment implements OnMapReadyCallback {
@@ -64,11 +71,34 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         LatLng sucursal3 = new LatLng(19.295233, -98.834375);
         LatLng sucursal4 = new LatLng(19.361585, -99.195566);
 
-        // Agregar marcadores en el mapa
-        mMap.addMarker(new MarkerOptions().position(sucursal1).title("DigitalStore - Sucursal 1"));
-        mMap.addMarker(new MarkerOptions().position(sucursal2).title("DigitalStore - Sucursal 2"));
-        mMap.addMarker(new MarkerOptions().position(sucursal3).title("DigitalStore - Sucursal 3"));
-        mMap.addMarker(new MarkerOptions().position(sucursal4).title("DigitalStore - Sucursal 4"));
+        // Cargar el icono y ajustar su tamaño
+        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.empresa);
+        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, 96, 96, false); // Ajustar tamaño a 96x96 píxeles
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromBitmap(scaledBitmap);
+
+        // Agregar marcadores en el mapa con icono personalizado ajustado
+        mMap.addMarker(new MarkerOptions()
+                .position(sucursal1)
+                .title("DigitalStore - Sucursal 1")
+                .icon(icon));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(sucursal2)
+                .title("DigitalStore - Sucursal 2")
+                .icon(icon));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(sucursal3)
+                .title("DigitalStore - Sucursal 3")
+                .icon(icon));
+
+        mMap.addMarker(new MarkerOptions()
+                .position(sucursal4)
+                .title("DigitalStore - Sucursal 4")
+                .icon(icon));
+
+        // Liberar la memoria del bitmap original
+        originalBitmap.recycle();
 
         // Mover la cámara a la primera sucursal
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sucursal1, 10));
