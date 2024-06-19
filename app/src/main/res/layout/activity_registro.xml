@@ -151,6 +151,7 @@
         <!-- Botón de Registro -->
         <Button
             android:id="@+id/buttonRegister"
+            android:onClick="registrarUsuario"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Registrarse"

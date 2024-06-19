@@ -93,19 +93,19 @@
 
             <Button
                 android:id="@+id/buttonLogin"
+                android:onClick="iniciarSesion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_button"
                 android:text="Inicia Sesión"
                 android:textAllCaps="false"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:background="@drawable/rounded_button"
-                android:id="@+id/buttonRegister"
+            <TextView
+                android:id="@+id/textRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¿No tienes una cuenta? Regístrate"
