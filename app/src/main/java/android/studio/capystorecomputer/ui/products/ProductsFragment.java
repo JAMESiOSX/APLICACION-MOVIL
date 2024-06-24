@@ -8,13 +8,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,12 +25,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.studio.capystorecomputer.R;
+import android.studio.capystorecomputer.ui.carrito.CarritoViewModel;
 
 public class ProductsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
     private List<Producto> productList;
+    private CarritoViewModel carritoViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class ProductsFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         productList = new ArrayList<>();
-        adapter = new ProductAdapter(getActivity(), productList);
+        carritoViewModel = new ViewModelProvider(requireActivity()).get(CarritoViewModel.class);
+        adapter = new ProductAdapter(getActivity(), productList, carritoViewModel);
         recyclerView.setAdapter(adapter);
 
         // Llamar al método para cargar los productos desde el servidor

@@ -9,10 +9,18 @@
 
     <string name="menu_inicio">Inicio</string>
     <string name="menu_productos">Productos</string>
+    <string name="menu_carrito">Mi Carrito</string>
     <string name="menu_asistente">Chatbot</string>
-    <string name="menu_sucursales">Sucursales</string>
+    <string name="menu_sucursales">Nuestras Sucursales</string>
     <string name="menu_contacto">Contacto</string>
+    <string name="menu_pedidos">Mis pedidos</string>
     <string name="menu_perfil">Mi perfil</string>
+
+
+    <string name="cantidad_articulos">Cantidad de artículos: %d</string>
+    <string name="total_producto">Total: $%.2f</string>
+
+
 </resources>
 
     <!-- MANEJO DE LOS NOMBRES DEL MENU A DE LOS TITULOS DEL BANNER -->

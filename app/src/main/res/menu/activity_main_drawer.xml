@@ -12,6 +12,11 @@
             android:id="@+id/nav_products"
             android:icon="@drawable/icon_product"
             android:title="@string/menu_productos" />
+
+        <item
+            android:id="@+id/nav_carrito"
+            android:icon="@drawable/carrito"
+            android:title="@string/menu_carrito" />
         <item
             android:id="@+id/nav_assistant"
             android:icon="@drawable/icon_asistente"
@@ -21,6 +26,11 @@
             android:id="@+id/nav_sucursales"
             android:icon="@drawable/icon_sucursal"
             android:title="@string/menu_sucursales" />
+        <item
+            android:id="@+id/nav_pedidos"
+            android:icon="@drawable/pedidos"
+            android:title="@string/menu_pedidos" />
+
         <item
             android:id="@+id/nav_contacto"
             android:icon="@drawable/contacto"

@@ -101,7 +101,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         originalBitmap.recycle();
 
         // Mover la cámara a la primera sucursal
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sucursal1, 10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sucursal1, 15));
 
         mMap.setOnMarkerClickListener(marker -> {
             // Mostrar información de la sucursal

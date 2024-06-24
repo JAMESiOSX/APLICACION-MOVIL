@@ -10,7 +10,7 @@ public class ContactoViewModel extends ViewModel {
 
     public ContactoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("HOLA ESTO ES CONTACTO");
+        mText.setValue("");
     }
 
     public LiveData<String> getText() {

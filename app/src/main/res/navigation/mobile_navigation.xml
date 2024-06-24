@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_products" />
 
     <fragment
+        android:id="@+id/nav_carrito"
+        android:name="android.studio.capystorecomputer.ui.carrito.CarritoFragment"
+        android:label="@string/menu_carrito"
+        tools:layout="@layout/fragment_carrito" />
+
+    <fragment
         android:id="@+id/nav_assistant"
         android:name="android.studio.capystorecomputer.ui.assistant.AssistantFragment"
         android:label="@string/menu_asistente"
@@ -28,6 +34,12 @@
         android:name="android.studio.capystorecomputer.ui.maps.MapsFragment"
         android:label="@string/menu_sucursales"
         tools:layout="@layout/fragment_maps" />
+
+    <fragment
+        android:id="@+id/nav_pedidos"
+        android:name="android.studio.capystorecomputer.ui.pedidos.PedidosFragment"
+        android:label="@string/menu_pedidos"
+        tools:layout="@layout/fragment_pedidos" />
 
     <fragment
         android:id="@+id/nav_contacto"

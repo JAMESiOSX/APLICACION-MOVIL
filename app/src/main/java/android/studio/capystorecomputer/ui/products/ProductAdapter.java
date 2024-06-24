@@ -16,15 +16,18 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import android.studio.capystorecomputer.databinding.ItemProductoBinding;
+import android.studio.capystorecomputer.ui.carrito.CarritoViewModel;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Producto> productList;
     private Context context;
+    private CarritoViewModel carritoViewModel;
 
-    public ProductAdapter(Context context, List<Producto> productList) {
+    public ProductAdapter(Context context, List<Producto> productList, CarritoViewModel carritoViewModel) {
         this.context = context;
         this.productList = productList;
+        this.carritoViewModel = carritoViewModel;
     }
 
     @NonNull
@@ -84,7 +87,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             binding.buttonAddToCart.setOnClickListener(v -> {
                 if (quantity > 0) {
-                    // Lógica para agregar al carrito
+                    carritoViewModel.agregarProducto(product, quantity);
                     Toast.makeText(context, product.getNombre() + " agregado al carrito", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(context, "Seleccione una cantidad", Toast.LENGTH_SHORT).show();

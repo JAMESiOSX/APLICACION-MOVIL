@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextPassword;
@@ -36,36 +37,38 @@ public class LoginActivity extends AppCompatActivity {
         String url = "http://192.168.1.71/PHP/verificar_usuario.php";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
-                response -> {
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean("success");
-                        String message = jsonResponse.getString("message");
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            boolean success = jsonResponse.getBoolean("success");
 
-                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                            if (success) {
+                                String nombreUsuario = jsonResponse.getString("nombre");
 
-                        if (success) {
-                            if (jsonResponse.has("user_id")) {
-                                int userId = jsonResponse.getInt("user_id");
-                                // Inicio de sesión exitoso, redirigir a MainActivity
+                                // Mensaje de bienvenida con el nombre del usuario
+                                Toast.makeText(LoginActivity.this, "¡Bienvenido, " + nombreUsuario + "!", Toast.LENGTH_SHORT).show();
+
+                                // Redirigir a MainActivity
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                intent.putExtra("user_id", userId);
                                 startActivity(intent);
-                                finish(); // Finalizar esta actividad para evitar regresar con el botón de atrás
+                                finish(); // Finalizar LoginActivity para evitar regresar con el botón de atrás
                             } else {
-                                Toast.makeText(LoginActivity.this, "Error: No se recibió user_id en la respuesta", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Inicio de sesión fallido", Toast.LENGTH_SHORT).show();
                             }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(LoginActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(LoginActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
-
-
                 },
-                error -> {
-                    Toast.makeText(LoginActivity.this, "Error de conexión: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(LoginActivity.this, "Error de conexión: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }) {
             @Override
             protected Map<String, String> getParams() {
@@ -73,13 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                 params.put("correo", correo);
                 params.put("contrasena", contrasena);
                 return params;
-            }
-
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Content-Type", "application/x-www-form-urlencoded");
-                return headers;
             }
         };
 

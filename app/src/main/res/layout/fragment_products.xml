@@ -13,4 +13,8 @@
         tools:listitem="@layout/item_producto"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2" />
+
+    <!-- Botón flotante en la esquina superior derecha -->
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
