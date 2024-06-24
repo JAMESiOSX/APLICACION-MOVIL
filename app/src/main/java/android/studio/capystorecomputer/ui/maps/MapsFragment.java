@@ -65,43 +65,38 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true); // Enable zoom controls
 
-        // Coordenadas de las sucursales
-        LatLng sucursal1 = new LatLng(19.437142, -99.192252);
-        LatLng sucursal2 = new LatLng(19.447437, -99.172527);
-        LatLng sucursal3 = new LatLng(19.295233, -98.834375);
-        LatLng sucursal4 = new LatLng(19.361585, -99.195566);
+        // Coordenadas de las sucursales (centros comerciales)
+        LatLng[] sucursales = {
+                new LatLng(19.437142, -99.192252), // DigitalStore - Sucursal 1
+                new LatLng(19.447437, -99.172527), // DigitalStore - Sucursal 2
+                new LatLng(19.295233, -98.834375), // DigitalStore - Sucursal 3
+                new LatLng(19.361585, -99.195566), // DigitalStore - Sucursal 4
+                new LatLng(19.426229, -99.200764), // Centro Comercial Santa Fe
+                new LatLng(19.504836, -99.136083), // Plaza Satélite
+                new LatLng(19.365637, -99.268113), // Perisur
+                new LatLng(19.296663, -99.227646), // Centro Comercial Perisur
+                new LatLng(19.391082, -99.283384), // Plaza Universidad
+                new LatLng(19.393703, -99.173259)  // Centro Comercial Reforma 222
+        };
 
-        // Cargar el icono y ajustar su tamaño
-        Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.empresa);
-        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, 96, 96, false); // Ajustar tamaño a 96x96 píxeles
-        BitmapDescriptor icon = BitmapDescriptorFactory.fromBitmap(scaledBitmap);
+        // Cargar un nuevo icono personalizado
+        Bitmap iconBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sucursales2);
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(iconBitmap, 96, 96, false);
+        BitmapDescriptor icon = BitmapDescriptorFactory.fromBitmap(resizedBitmap);
 
-        // Agregar marcadores en el mapa con icono personalizado ajustado
-        mMap.addMarker(new MarkerOptions()
-                .position(sucursal1)
-                .title("DigitalStore - Sucursal 1")
-                .icon(icon));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(sucursal2)
-                .title("DigitalStore - Sucursal 2")
-                .icon(icon));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(sucursal3)
-                .title("DigitalStore - Sucursal 3")
-                .icon(icon));
-
-        mMap.addMarker(new MarkerOptions()
-                .position(sucursal4)
-                .title("DigitalStore - Sucursal 4")
-                .icon(icon));
+        // Agregar marcadores en el mapa con icono personalizado
+        for (int i = 0; i < sucursales.length; i++) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(sucursales[i])
+                    .title("DigitalStore - Sucursal " + (i + 1))
+                    .icon(icon));
+        }
 
         // Liberar la memoria del bitmap original
-        originalBitmap.recycle();
+        iconBitmap.recycle();
 
         // Mover la cámara a la primera sucursal
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sucursal1, 15));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sucursales[0], 15));
 
         mMap.setOnMarkerClickListener(marker -> {
             // Mostrar información de la sucursal

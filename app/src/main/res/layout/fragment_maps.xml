@@ -11,8 +11,9 @@
         android:id="@+id/tv_legend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nuestras Sucursales"
+        android:text="Dejamos a disposición nuestras sucursales."
         android:textSize="20sp"
+        android:textColor="@color/black"
         android:layout_margin="16dp" />
 
     <com.google.android.gms.maps.MapView

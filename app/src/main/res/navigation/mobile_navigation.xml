@@ -52,4 +52,10 @@
         android:name="android.studio.capystorecomputer.ui.perfil.PerfilFragment"
         android:label="@string/menu_perfil"
         tools:layout="@layout/fragment_perfil" />
+
+    <fragment
+        android:id="@+id/nav_calificar"
+        android:name="android.studio.capystorecomputer.ui.evaluacion.EvaluacionFragment"
+        android:label="@string/menu_calificar"
+        tools:layout="@layout/fragment_evaluacion" />
 </navigation>

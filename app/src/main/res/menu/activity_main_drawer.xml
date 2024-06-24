@@ -40,5 +40,10 @@
             android:id="@+id/nav_perfil"
             android:icon="@drawable/icon_user"
             android:title="@string/menu_perfil" />
+
+        <item
+            android:id="@+id/nav_calificar"
+            android:icon="@drawable/calificar"
+            android:title="@string/menu_calificar" />
     </group>
 </menu>

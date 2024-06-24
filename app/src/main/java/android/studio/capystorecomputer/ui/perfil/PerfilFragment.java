@@ -19,7 +19,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,8 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.studio.capystorecomputer.LoginActivity;
 import android.studio.capystorecomputer.R;
@@ -59,12 +56,11 @@ public class PerfilFragment extends Fragment {
         // URL del script PHP que obtiene el último id de conexiones
         String urlUltimoUserId = "http://192.168.1.71/PHP/obtenerUltimoUserId.php";
 
-        // Crear solicitud HTTP GET usando Volley para obtener el último id
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlUltimoUserId,
+        // Crear solicitud GET usando JsonObjectRequest para obtener el último id
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlUltimoUserId, null,
                 response -> {
                     try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        userId = jsonResponse.getInt("ultimoUserId");
+                        int userId = response.getInt("ultimoUserId");
 
                         // Verificar que se obtuvo un id válido
                         if (userId != -1) {
@@ -82,7 +78,7 @@ public class PerfilFragment extends Fragment {
 
         // Agregar la solicitud a la cola de peticiones de Volley
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
 
         // Configurar botón para cerrar sesión
         Button btnLogout = view.findViewById(R.id.button_logout);
@@ -123,24 +119,27 @@ public class PerfilFragment extends Fragment {
     private void saveChanges(EditText editName, EditText editLastName, EditText editAddress, EditText editEmail, EditText editPhone) {
         String urlActualizarPerfil = "http://192.168.1.71/PHP/actualizarPerfil.php";
 
-        // Crear un mapa con los parámetros a enviar
-        Map<String, String> params = new HashMap<>();
-        params.put("id", String.valueOf(userId));  // Usar "id" en lugar de "user_id"
-        params.put("nombre", editName.getText().toString());
-        params.put("apellidos", editLastName.getText().toString());
-        params.put("direccion", editAddress.getText().toString());
-        params.put("correo", editEmail.getText().toString());
-        params.put("telefono", editPhone.getText().toString());
+        // Crear un JSONObject con los parámetros a enviar
+        JSONObject params = new JSONObject();
+        try {
+            params.put("id", userId);
+            params.put("nombre", editName.getText().toString());
+            params.put("apellidos", editLastName.getText().toString());
+            params.put("direccion", editAddress.getText().toString());
+            params.put("correo", editEmail.getText().toString());
+            params.put("telefono", editPhone.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        // Crear la solicitud POST usando Volley
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlActualizarPerfil, new JSONObject(params),
+        // Crear la solicitud POST usando JsonObjectRequest
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlActualizarPerfil, params,
                 response -> {
                     try {
                         boolean success = response.getBoolean("success");
                         if (success) {
                             showSuccessMessage("Datos actualizados correctamente");
                             toggleEditMode(editName, editLastName, editAddress, editEmail, editPhone);
-
                         } else {
                             showErrorMessage(response.getString("message"));
                         }
@@ -170,19 +169,18 @@ public class PerfilFragment extends Fragment {
         // URL del script PHP que obtiene datos del perfil basado en user_id
         String urlDatosUsuario = "http://192.168.1.71/PHP/obtenerDatosUsuario.php?user_id=" + userId;
 
-        // Crear solicitud HTTP GET usando Volley para obtener datos del perfil
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, urlDatosUsuario,
+        // Crear solicitud GET usando JsonObjectRequest para obtener datos del perfil
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, urlDatosUsuario, null,
                 response -> {
                     try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean("success");
+                        boolean success = response.getBoolean("success");
 
                         if (success) {
-                            String nombre = jsonResponse.getString("nombre");
-                            String apellidos = jsonResponse.getString("apellidos");
-                            String direccion = jsonResponse.getString("direccion");
-                            String correo = jsonResponse.getString("correo");
-                            String telefono = jsonResponse.getString("telefono");
+                            String nombre = response.getString("nombre");
+                            String apellidos = response.getString("apellidos");
+                            String direccion = response.getString("direccion");
+                            String correo = response.getString("correo");
+                            String telefono = response.getString("telefono");
 
                             // Mostrar los datos del perfil en los EditTexts
                             editName.setText(nombre);
@@ -191,7 +189,7 @@ public class PerfilFragment extends Fragment {
                             editEmail.setText(correo);
                             editPhone.setText(telefono);
                         } else {
-                            String error = jsonResponse.getString("error");
+                            String error = response.getString("error");
                             showErrorMessage(error);
                         }
                     } catch (JSONException e) {
@@ -203,8 +201,9 @@ public class PerfilFragment extends Fragment {
                     showErrorMessage("Error de conexión: " + error.getMessage());
                 });
 
+        // Agregar la solicitud a la cola de peticiones de Volley
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
-        requestQueue.add(stringRequest);
+        requestQueue.add(jsonObjectRequest);
     }
 
     private void showErrorMessage(String message) {

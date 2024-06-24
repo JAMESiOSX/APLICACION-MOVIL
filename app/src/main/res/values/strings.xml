@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">DigitalDepot</string>
+    <string name="app_name">DigitalStore</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">DigitalDepot</string>
-    <string name="nav_header_subtitle">digitaldepot@gmail.com</string>
+    <string name="nav_header_title">DigitalStore</string>
+    <string name="nav_header_subtitle">digitalstore@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="title_activity_login">Acceder</string>
 
@@ -15,6 +15,7 @@
     <string name="menu_contacto">Contacto</string>
     <string name="menu_pedidos">Mis pedidos</string>
     <string name="menu_perfil">Mi perfil</string>
+    <string name="menu_calificar">¡Calificanos!</string>
 
 
     <string name="cantidad_articulos">Cantidad de artículos: %d</string>
