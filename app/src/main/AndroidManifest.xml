@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Pruebas"
+            android:exported="false" />
+        <activity
             android:name=".EditarPerfilFragment"
             android:exported="false" />
         <activity
